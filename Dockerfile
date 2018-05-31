@@ -11,14 +11,14 @@ ADD . /code/
 ENV SSH_PASSWD "root:Docker!"
 RUN apt-get update \
         && apt-get install -y --no-install-recommends dialog \
+        && apt-get update \
+	&& apt-get install -y --no-install-recommends openssh-server \
+	&& echo "$SSH_PASSWD" | chpasswd
 	&& apt-get install -y software-properties-common \
        	&& add-apt-repository ppa:ondrej/php \
 	&& apt-get update \
 	&& apt-get install -y php5.6 \
 	&& apt-get install php5.6-mysql \
-	&& apt-get install -y --no-install-recommends openssh-server \
-	&& echo "$SSH_PASSWD" | chpasswd 
-
 COPY sshd_config /etc/ssh/
 COPY init.sh /usr/local/bin/
 	
