@@ -11,6 +11,7 @@ ADD . /code/
 ENV SSH_PASSWD "root:Docker!"
 RUN apt-get update \
         && apt-get install -y --no-install-recommends dialog \
+	&& apt-get install -y software-properties-common \
        	&& add-apt-repository ppa:ondrej/php \
 	&& apt-get update \
 	&& apt-get install -y php5.6 \
